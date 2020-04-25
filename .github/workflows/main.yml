@@ -21,7 +21,7 @@ jobs:
       uses: actions/checkout@v1
     - name: Build and Bundle
       id: build
-      uses: ./.github/actions/aws-robomaker-sample-application-ci/
+      uses: mm318/aws-robomaker-sample-application-ci@master
       with:
         ros-distro: ${{ matrix.distro }}
         workspace-dir: robot_ws
@@ -31,20 +31,14 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_ROS1 }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ROS1 }}
         aws-region: us-west-2
-    - name: Log Build Failure
-      uses: ./.github/actions/cw-build-status/
+      if: always() && github.ref == 'refs/heads/ros1'
+    - name: Log Build Status
+      uses: ros-tooling/action-cloudwatch-metrics@0.0.4
       with:
-        status: 'failure'
         namespace: 'GitHubActionsCI'
-      if: failure() && github.ref == 'refs/heads/ros1'
-    - name: Log Build Success
-      uses: ./.github/actions/cw-build-status/
-      with:
-        status: 'success'
-        namespace: 'GitHubActionsCI'
-      if: success() && github.ref == 'refs/heads/ros1'
+      if: always() && github.ref == 'refs/heads/ros1'
     - name: Upload to S3
-      uses: ./.github/actions/s3-cp/
+      uses: mm318/s3-cp-action@v0.3.0
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_ROS1 }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_ROS1 }}
@@ -67,7 +61,7 @@ jobs:
       uses: actions/checkout@v1
     - name: Build and Bundle
       id: build
-      uses: ./.github/actions/aws-robomaker-sample-application-ci/
+      uses: mm318/aws-robomaker-sample-application-ci@master
       with:
         ros-distro: ${{ matrix.distro }}
         workspace-dir: simulation_ws
@@ -77,20 +71,14 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_ROS1 }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ROS1 }}
         aws-region: us-west-2
-    - name: Log Build Failure
-      uses: ./.github/actions/cw-build-status/
+      if: always() && github.ref == 'refs/heads/ros1'
+    - name: Log Build Status
+      uses: ros-tooling/action-cloudwatch-metrics@0.0.4
       with:
-        status: 'failure'
         namespace: 'GitHubActionsCI'
-      if: failure() && github.ref == 'refs/heads/ros1'
-    - name: Log Build Success
-      uses: ./.github/actions/cw-build-status/
-      with:
-        status: 'success'
-        namespace: 'GitHubActionsCI'
-      if: success() && github.ref == 'refs/heads/ros1'
+      if: always() && github.ref == 'refs/heads/ros1'
     - name: Upload to S3
-      uses: ./.github/actions/s3-cp/
+      uses: mm318/s3-cp-action@v0.3.0
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_ROS1 }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_ROS1 }}
@@ -110,7 +98,7 @@ jobs:
       uses: actions/checkout@v1
     - name: Build and Bundle
       id: build
-      uses: ./.github/actions/aws-robomaker-sample-application-ci/
+      uses: mm318/aws-robomaker-sample-application-ci@master
       with:
         ros-distro: kinetic
         gazebo-version: 9
@@ -121,20 +109,14 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_ROS1 }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ROS1 }}
         aws-region: us-west-2
-    - name: Log Build Failure
-      uses: ./.github/actions/cw-build-status/
+      if: always() && github.ref == 'refs/heads/ros1'
+    - name: Log Build Status
+      uses: ros-tooling/action-cloudwatch-metrics@0.0.4
       with:
-        status: 'failure'
         namespace: 'GitHubActionsCI'
-      if: failure() && github.ref == 'refs/heads/ros1'
-    - name: Log Build Success
-      uses: ./.github/actions/cw-build-status/
-      with:
-        status: 'success'
-        namespace: 'GitHubActionsCI'
-      if: success() && github.ref == 'refs/heads/ros1'
+      if: always() && github.ref == 'refs/heads/ros1'
     - name: Upload to S3
-      uses: ./.github/actions/s3-cp/
+      uses: mm318/s3-cp-action@v0.3.0
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_ROS1 }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_ROS1 }}
