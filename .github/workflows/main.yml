@@ -6,7 +6,7 @@ on:
       - ros1
       - ros2
   schedule:
-    - cron: '0 */2 * * *' # run every 2 hours for testing purposes
+    - cron: '0 14 * * *'  # run at 2 pm everyday
 
 jobs:
   build_and_bundle_ros1:
@@ -32,7 +32,7 @@ jobs:
         ros-distro: ${{ matrix.distro }}
         gazebo-version: ${{ matrix.gazebo }}
         workspace-dir: robot_ws
-        generate-sources: 'true'
+        generate-sources: true
     - name: Build and Bundle Simulation Workspace
       uses: mm318/aws-robomaker-sample-application-ci@master
       with:
@@ -82,7 +82,7 @@ jobs:
         ros-distro: ${{ matrix.distro }}
         gazebo-version: ${{ matrix.gazebo }}
         workspace-dir: robot_ws
-        generate-sources: 'true'
+        generate-sources: true
     - name: Build and Bundle Simulation Workspace
       uses: mm318/aws-robomaker-sample-application-ci@master
       with:
