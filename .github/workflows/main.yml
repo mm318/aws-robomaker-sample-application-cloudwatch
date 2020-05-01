@@ -1,7 +1,7 @@
 name: build-and-bundle
 on: 
   pull_request:
-  push:     # (?) this will probably never trigger, since this workflow yaml file is not the default branch
+  push:
     branches:
       - ros2
   schedule: # (?) this will currently never trigger, since this workflow yaml file is not the default branch
@@ -27,7 +27,7 @@ jobs:
         ros-distro: ${{ matrix.distro }}
         gazebo-version: ${{ matrix.gazebo }}
         workspace-dir: robot_ws
-        generate-sources: 'true'
+        generate-sources: true
     - name: Build and Bundle Simulation Workspace
       uses: mm318/aws-robomaker-sample-application-ci@master
       with:
