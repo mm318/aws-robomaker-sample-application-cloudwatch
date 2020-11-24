@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>aws_robomaker_bookstore_world</name>
+  <version>1.0.0</version>
+  <description>
+    AWS RoboMaker package for a bookstore with sheling and tables Gazebo simulations.
+  </description>
+  <license>Apache 2.0</license>
+  <author email="ros-contributions@amazon.com">AWS RoboMaker</author>
+  <maintainer email="ros-contributions@amazon.com">AWS RoboMaker</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>ros_ign_gazebo</exec_depend>
+  <!-- <exec_depend>gazebo</exec_depend> -->
+  <!-- <exec_depend>gazebo_plugins</exec_depend> -->
+</package>
