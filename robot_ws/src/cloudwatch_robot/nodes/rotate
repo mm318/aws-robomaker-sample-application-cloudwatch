@@ -39,10 +39,12 @@ class Rotator():
     def move_random(self):
         self.twist = Twist()
 
+        direction = random.uniform(0.0, 100.0)
+        angular_speed = random.uniform(0.0, 100.0)
         r = rospy.Rate(0.1)
-        while not respy.is_shutdown():
-            self.twist.angular.z = random.uniform(0.0, 100.0)
-            self.twist.linear.x = random.uniform(0.0, 100.0)
+        while not rospy.is_shutdown():
+            self.twist.angular.z = direction * angular_speed
+            self.twist.linear.x = direction
             rospy.loginfo("Moving Robot: %s", self.twist)
             r.sleep()
 
