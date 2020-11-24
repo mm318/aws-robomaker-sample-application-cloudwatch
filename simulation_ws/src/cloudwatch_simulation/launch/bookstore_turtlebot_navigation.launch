@@ -62,13 +62,4 @@
     <arg name="val" value="2"/>
   </include>
 
- <!-- Spawn the robot into Gazebo with the turtlebot description -->
-  <include file="$(find turtlebot3_description_reduced_mesh)/launch/spawn_turtlebot.launch">
-    <arg name="x_pos" value="-5.0"/>
-    <arg name="y_pos" value="5.5"/>
-    <arg name="z_pos" value="$(arg z_pos)"/>
-    <arg name="yaw"   value="$(arg yaw)"/>
-    <arg name="val" value="3"/>
-  </include>
-
 </launch>
