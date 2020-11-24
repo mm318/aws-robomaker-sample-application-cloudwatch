@@ -16,6 +16,7 @@
  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 
+import random
 import rospy
 from geometry_msgs.msg import Twist
 
@@ -25,7 +26,7 @@ class Rotator():
 
     def rotate_forever(self):
         self.twist = Twist()
-        
+
         direction = 1
         angular_speed = 0.2
         r = rospy.Rate(0.1)
@@ -35,12 +36,22 @@ class Rotator():
             rospy.loginfo("Rotating Robot: %s", self.twist)
             r.sleep()
 
+    def move_random(self):
+        self.twist = Twist()
+
+        r = rospy.Rate(0.1)
+        while not respy.is_shutdown():
+            self.twist.angular.z = random.uniform(0.0, 100.0)
+            self.twist.linear.x = random.uniform(0.0, 100.0)
+            rospy.loginfo("Moving Robot: %s", self.twist)
+            r.sleep()
 
 def main():
     rospy.init_node('rotate')
     try:
         rotator = Rotator()
-        rotator.rotate_forever()
+        # rotator.rotate_forever()
+        rotator.move_random()
     except rospy.ROSInterruptException:
         pass
 
