@@ -5,7 +5,7 @@ on:
     branches:
       - ros1
   schedule:
-    - cron: '0 2,14 * * *'  # runs at 2am & 2pm UTC i.e. 7pm & 7am PST everyday
+    - cron: '0 */2 * * *' # run every 2 hours for testing
 
 jobs:
   build_and_bundle_ros1:
@@ -109,10 +109,9 @@ jobs:
       uses: ros-tooling/action-cloudwatch-metrics@0.0.4
       with:
         namespace: RobotWorkspaceBuild
-        metric-value: ${{ ! contains(needs.build_and_bundle_ros1.outputs.robot_ws_build_result, 'failure') }}
+        metric-value: ${{ contains(needs.build_and_bundle_ros1.outputs.robot_ws_build_result, 'success') }}
     - name: Log Simulation Workspace Build Status
       uses: ros-tooling/action-cloudwatch-metrics@0.0.4
       with:
         namespace: SimulationWorkspaceBuild
-        metric-value: ${{ ! contains(needs.build_and_bundle_ros1.outputs.simulation_ws_build_result, 'failure') }}
-    
+        metric-value: ${{ contains(needs.build_and_bundle_ros1.outputs.simulation_ws_build_result, 'success') }}
