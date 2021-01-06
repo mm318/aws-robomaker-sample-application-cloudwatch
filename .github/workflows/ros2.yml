@@ -120,7 +120,7 @@ jobs:
           ]
         namespace: SimulationWorkspaceBuild
         metric-value: ${{ contains(needs.build_and_bundle_ros2.outputs.simulation_ws_build_result, 'success') }}
-    - name: Log Simulation Workspace Build Status
+    - name: Log Bundle Upload Status
       uses: ros-tooling/action-cloudwatch-metrics@0.0.4
       with:
         metric-dimensions: >-
@@ -131,3 +131,4 @@ jobs:
           ]
         namespace: BundleUpload
         metric-value: ${{ contains(needs.build_and_bundle_ros2.result, 'success') }}
+      if: ${{ github.event_name == 'schedule' }}

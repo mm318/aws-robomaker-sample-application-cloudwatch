@@ -120,3 +120,4 @@ jobs:
       with:
         namespace: BundleUpload
         metric-value: ${{ contains(needs.build_and_bundle_ros1.result, 'success') }}
+      if: ${{ github.event_name == 'schedule' }}
